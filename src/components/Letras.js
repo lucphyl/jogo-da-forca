@@ -1,19 +1,18 @@
 
 
-export default function Letras(props) {
-    const {alfabeto, letrasUsadas, clicouLetra} = props
-
-    return (
+export default function Letras (props) {
+    return(
         <div className="container-letras">
-            {alfabeto.map((letra) => (
-                <button
-                    key={letra}
-                    onClick={() => clicouLetra(letra)}
-                    disabled={letrasUsadas.includes(letra)}
-                >
-                    {letra}
-                </button>
+            {props.alfabeto.map((letra)=> (
+            <button 
+                data-test="letter"
+                onClick={() => props.clickLetter(letra)}
+                key={letra}
+                disabled={props.letter.includes(letra)}
+            >
+                {letra}
+            </button>
             ))}
-        </div>
+      </div>
     )
 }

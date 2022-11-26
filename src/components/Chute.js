@@ -1,9 +1,9 @@
-export default function Chute({desabilitaInput, chute, setChute, chutarPalavraInteira}) {
-    return (
+export default function Chute (props) {
+    return(
         <div className="container-input">
-            <span>Já sei a palavra!</span>
-            <input disabled={desabilitaInput} value={chute} onChange={(e) => setChute(e.target.value)} />
-            <button onClick={chutarPalavraInteira}>Chutar</button>
-        </div>
+            <span>já sei a palavra !      </span>
+            <input data-test="guess-input"disabled={props.disableInput} onChange={(e)=> props.setpalpite(e.target.value)} value={props.palpite}></input>
+            <button data-test="guess-button"onClick={props.MakeGuess}>chutar</button>
+      </div>
     )
 }

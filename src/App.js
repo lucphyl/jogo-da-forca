@@ -7,6 +7,9 @@ import forca3 from "./assets/forca3.png"
 import forca4 from "./assets/forca4.png"
 import forca5 from "./assets/forca5.png"
 import forca6 from "./assets/forca6.png"
+import Chute from "./components/Chute"
+import Jogo from "./components/Jogo"
+import Letras from "./components/Letras"
 import palavras from "./palavras"
 
 //arrays de letras e de imagens:
@@ -134,31 +137,11 @@ function App() {
   return (
     <div className="container-tela">
       
+          <Jogo imagens={imagens} error={error} startGame={startGame} colorWord={colorWord} gameWord={gameWord}/>
+      
+          <Letras clickLetter={clickLetter} letter={letter} alfabeto={alfabeto}/>
 
-      <div className="container-forca">
-        <img data-test="game-image" dssrc={imagens[error]} alt="imagem da forca"></img>
-        <button data-test="choose-word" onClick={startGame}>Escolher palavra</button>
-        <h1 data-test="word" className={colorWord}>{gameWord}</h1>
-      </div>
-
-      <div className="container-letras">
-        {alfabeto.map((letra)=> (
-          <button 
-            data-test="letter"
-            onClick={() => clickLetter(letra)}
-            key={letra}
-            disabled={letter.includes(letra)}
-          >
-            {letra}
-          </button>
-        ))}
-      </div>
-
-      <div className="container-input">
-        <span>já sei a palavra !      </span>
-        <input data-test="guess-input"disabled={disableInput} onChange={(e)=> setpalpite(e.target.value)} value={palpite}></input>
-        <button data-test="guess-button"onClick={MakeGuess}>chutar</button>
-      </div>
+          <Chute disableInput={disableInput} MakeGuess={MakeGuess} setpalpite={setpalpite} palpite={palpite}/>
     </div>
     
 
