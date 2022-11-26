@@ -76,9 +76,6 @@ function App() {
     let word = sorted.replace("ç", "c").replace("á", "a").replace("à","a").replace("ã","a").replace("â","a").replace("é","e").replace("è","e").replace("ẽ","e").replace("ê","e").replace("í","i").replace("î", "i").replace("ó","o").replace("ô","o").replace("ô", "o").replace("ú","u")
     setAccent(word)
 
-    console.log(sorted)
-    console.log(word)
-
   }
 
   //desabilitar letras clicadas:
@@ -93,7 +90,7 @@ function App() {
     }
   }
 
-
+  // compara as letras:
   function correct(l){
     let newWord = [...gameWord]
     Sorted.forEach((letra, i) =>{
@@ -120,6 +117,7 @@ function App() {
   
   }
 
+  //chutar palavra:
   function MakeGuess(){
     let sortedString = ""
     Sorted.forEach((letra) => sortedString += letra)
@@ -138,14 +136,15 @@ function App() {
       
 
       <div className="container-forca">
-        <img src={imagens[error]} alt="imagem da forca"></img>
-        <button onClick={startGame}>Escolher palavra</button>
-        <h1 className={colorWord}>{gameWord}</h1>
+        <img data-test="game-image" dssrc={imagens[error]} alt="imagem da forca"></img>
+        <button data-test="choose-word" onClick={startGame}>Escolher palavra</button>
+        <h1 data-test="word" className={colorWord}>{gameWord}</h1>
       </div>
 
       <div className="container-letras">
         {alfabeto.map((letra)=> (
           <button 
+            data-test="letter"
             onClick={() => clickLetter(letra)}
             key={letra}
             disabled={letter.includes(letra)}
@@ -157,8 +156,8 @@ function App() {
 
       <div className="container-input">
         <span>já sei a palavra !      </span>
-        <input disabled={disableInput} onChange={(e)=> setpalpite(e.target.value)} value={palpite}></input>
-        <button onClick={MakeGuess}>chutar</button>
+        <input data-test="guess-input"disabled={disableInput} onChange={(e)=> setpalpite(e.target.value)} value={palpite}></input>
+        <button data-test="guess-button"onClick={MakeGuess}>chutar</button>
       </div>
     </div>
     
